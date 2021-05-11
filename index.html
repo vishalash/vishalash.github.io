@@ -405,6 +405,7 @@
         }
         document.getElementById('popupLink').click();
         document.getElementById("popupData").innerHTML = "We will search vaccine data for " + pincode + "\n\r Pincode every " + timer + " Seconds.";
+        fetchVaccine();
         setInterval(() => {
             fetchVaccine();
         }, timer * 1000);
