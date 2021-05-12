@@ -457,7 +457,7 @@
                     data.push(session.date);
                     data.push(session.available_capacity);
                     data.push(session.vaccine);
-                    data.push(new Date().toLocaleString('en-IN', { timeZone: 'IST' }));
+                    data.push(new Date());
                     if (age == 'all') {
                         dataForExport.push(data);
                     } else if (age == '18' && session.min_age_limit == 18) {
