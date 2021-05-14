@@ -439,6 +439,7 @@
         var e = document.getElementById("timer");
         var timer = e.value;
         var age = document.querySelector('input[name="age"]:checked').value;
+        document.title = 'Searching for Vaccine data';
         client.get('https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByPin?pincode=' + pincode + '&date=' + today, function (response) {
             document.getElementById('popupCloseLink').click();
             document.getElementById("popupHeaderData").innerHTML = "";
@@ -469,6 +470,7 @@
             });
             if (dataFound && dataForExport.length>1) {
                 document.getElementById('popupLink').click();
+                document.title = 'Vaccine Slots Found!!! Book Now!!!';
                 document.getElementById("popupData").innerHTML = "Available Slot Found, Data Downloading...";
                 exportToCsv('vaccine' + Date() + '.csv', dataForExport);
             } else {
@@ -503,6 +505,7 @@
 
                 }
                 html += "</table>";
+                document.title = 'No Vaccine Slots Found';
                 document.getElementById("popupHeaderData").innerHTML = "No Available Slots Found. Will search again in " + timer + " Seconds.";
                 document.getElementById("popupData").innerHTML = html;
             }
