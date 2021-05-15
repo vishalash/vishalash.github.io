@@ -518,7 +518,6 @@
                 document.title = 'No Vaccine Slots Found';
                 document.getElementById("popupHeaderData").innerHTML = "No Available Slots Found. Will search again in " + timer + " Seconds.";
                 document.getElementById("popupData").innerHTML = html;
-                notifyMe('No Available Slots Found. Will search again in " + timer + " Seconds.');
             }
         });
     }
@@ -561,31 +560,6 @@
                 link.click();
                 document.body.removeChild(link);
             }
-        }
-    }
-    // request permission on page load
-    document.addEventListener('DOMContentLoaded', function () {
-        if (!Notification) {
-            alert('Desktop notifications not available in your browser. Try Chromium.');
-            return;
-        }
-
-        if (Notification.permission !== 'granted')
-            Notification.requestPermission();
-    });
-
-
-    function notifyMe(msg) {
-        if (Notification.permission !== 'granted')
-            Notification.requestPermission();
-        else {
-            var notification = new Notification('Notification title', {
-                icon: 'https://upload.wikimedia.org/wikipedia/commons/9/95/Smallpox_vaccine.jpg',
-                body: msg,
-            });
-            notification.onclick = function () {
-                window.open('http://vishalash.com');
-            };
         }
     }
 </script>
