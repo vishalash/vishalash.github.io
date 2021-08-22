@@ -112,9 +112,12 @@
     }
 
     .form {
-            max-width: 480px;
-        }
+        max-width: 480px;
+    }
 
+    label {
+        margin: 10px;
+    }
 
     h1 {
         text-align: center;
@@ -312,6 +315,58 @@
             width: 75%;
         }
     }
+
+    @media (min-width:320px) {
+
+        /* smartphones, iPhone, portrait 480x320 phones */
+        .form {
+            max-width: 100%;
+        }
+    }
+
+    @media (min-width:481px) {
+
+        /* portrait e-readers (Nook/Kindle), smaller tablets @ 600 or @ 640 wide. */
+        .form {
+            max-width: 100%;
+        }
+    }
+
+    @media (min-width:641px) {
+
+        /* portrait tablets, portrait iPad, landscape e-readers, landscape 800x480 or 854x480 phones */
+        .form {
+            max-width: 100%;
+            height: 100%;
+        }
+    }
+
+    @media (min-width:961px) {
+
+        /* tablet, landscape iPad, lo-res laptops ands desktops */
+        .form {
+            max-width: 100%;
+            height: 100%;
+        }
+    }
+
+    @media (min-width:1025px) {
+
+        /* big landscape tablets, laptops, and desktops */
+        .form {
+            max-width: 50%;
+            height: 100%;
+        }
+    }
+
+    @media (min-width:1281px) {
+
+        /* hi-res laptops and desktops */
+        .form {
+            max-width: 50%;
+            height: 100%;
+        }
+    }
 </style>
 <html>
 
@@ -320,7 +375,10 @@
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-113290529-1"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
         gtag('js', new Date());
 
         gtag('config', 'UA-113290529-1');
@@ -335,7 +393,7 @@
     <meta name="language" content="English">
     <meta name="revisit-after" content="2 days">
     <meta name="author" content="Vishal Ash">
-    <title>Covid Vaccine Finder COVAXIN and COVISHIELD Easy search</title>
+    <title>Covid Vaccine Finder COVAXIN and COVISHIELD For India</title>
 </head>
 
 <body>
@@ -354,12 +412,12 @@
             </div>
 
             <div class="form">
-                <h1> Covid Vaccine Search </h1>
+                <h1> Covid Vaccine Search For India </h1>
 
                 <fieldset>
 
                     <legend><span class="number">1</span> Enter Area Pincode </legend>
-                    <input type="number" id="pincode" name="pin_code" onkeyup="success()" placeholder="302021">
+                    <input type="number" id="pincode" name="pin_code" onkeyup="success()" placeholder="Enter Pincode">
 
                     <legend><span class="number">2</span> Select Timer Frequency </legend>
                     <select id="timer" name="timer">
@@ -376,12 +434,20 @@
                     <label style="display: inline;" for="45">45 +</label>
                     <input type="radio" id="all" name="age" value="all" checked>
                     <label style="display: inline;" for="all">All</label>
+                    <br /><br />
 
+                    <legend><span class="number">4</span> Fee Type </legend>
+                    <input type="radio" id="free" name="fee" value="free">
+                    <label style="display: inline;" for="free">Free</label>
+                    <input type="radio" id="paid" name="fee" value="paid">
+                    <label style="display: inline;" for="paid">Paid</label>
+                    <input type="radio" id="all" name="fee" value="all" checked>
+                    <label style="display: inline;" for="all">All</label>
 
                 </fieldset>
                 &#9432; We will download csv data if any slot is available, otherwise popup will show the data.
                 <br />
-                Give any feedback/suggestions @ <a href="https://instagram.com/vishal.ash">Instagram</a>
+                Give any feedback/suggestions @ <a target="_blank" href="https://instagram.com/vishal.ash">Instagram</a>
                 <br />
                 <br />
                 <button type="submit" id="submitButton" onclick="fetchVaccineSearch()">Search</button>
@@ -408,6 +474,7 @@
             anHttpRequest.send(null);
         }
     }
+
     function success() {
         if (document.getElementById("pincode").value === "") {
             document.getElementById('submitButton').disabled = true;
@@ -416,6 +483,7 @@
         }
     }
     document.getElementById('popupCloseLink').click();
+
     function fetchVaccineSearch() {
         var e = document.getElementById("timer");
         var timer = e.value;
@@ -424,12 +492,14 @@
             return;
         }
         document.getElementById('popupLink').click();
-        document.getElementById("popupData").innerHTML = "We will search vaccine data for " + pincode + "\n\r Pincode every " + timer + " Seconds.";
+        document.getElementById("popupData").innerHTML = "We will search vaccine data for " + pincode +
+            "\n\r Pincode every " + timer + " Seconds.";
         fetchVaccine();
         setInterval(() => {
             fetchVaccine();
         }, timer * 1000);
     }
+
     function fetchVaccine() {
         var client = new HttpClient();
         var pincode = document.getElementById('pincode').value;
@@ -441,77 +511,103 @@
         var e = document.getElementById("timer");
         var timer = e.value;
         var age = document.querySelector('input[name="age"]:checked').value;
+        var fee = document.querySelector('input[name="fee"]:checked').value;
         document.title = 'Searching for Vaccine data';
-        client.get('https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByPin?pincode=' + pincode + '&date=' + today, function (response) {
-            document.getElementById('popupCloseLink').click();
-            document.getElementById("popupHeaderData").innerHTML = "";
-            var dataForExport = [['Name', 'Fee Type', 'Minimum Age', 'Date', 'Available Capacity', 'Vaccine Type', 'Searched At']];
-            var dataFound = false;
-            response = JSON.parse(response);
-            response.centers.forEach(center => {
-                center.sessions.forEach(session => {
-                    if (session.available_capacity > 0) {
-                        dataFound = true;
-                    }
-                    var data = [];
-                    data.push(center.name);
-                    data.push(center.fee_type);
-                    data.push(session.min_age_limit);
-                    data.push(session.date);
-                    data.push(session.available_capacity);
-                    data.push(session.vaccine);
-                    data.push(new Date());
-                    if (age == 'all') {
-                        dataForExport.push(data);
-                    } else if (age == '18' && session.min_age_limit == 18) {
-                        dataForExport.push(data);
-                    } else if (age == '45' && session.min_age_limit == 45) {
-                        dataForExport.push(data);
-                    }
+        client.get('https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByPin?pincode=' + pincode +
+            '&date=' + today,
+            function (response) {
+                document.getElementById('popupCloseLink').click();
+                document.getElementById("popupHeaderData").innerHTML = "";
+                var dataForExport = [
+                    ['Name', 'Fee Type', 'Minimum Age', 'Date', 'Available Capacity', 'Vaccine Type',
+                        'Searched At'
+                    ]
+                ];
+                var dataFound = false;
+                response = JSON.parse(response);
+                response.centers.forEach(center => {
+                    center.sessions.forEach(session => {
+                        var ageDataCorrect = true;
+                        var freeTypeCorrect = true;
+                        if (session.available_capacity > 0) {
+                            dataFound = true;
+                        }
+                        var data = [];
+                        data.push(center.name);
+                        data.push(center.fee_type);
+                        data.push(session.min_age_limit);
+                        data.push(session.date);
+                        data.push(session.available_capacity);
+                        data.push(session.vaccine);
+                        data.push(new Date());
+                        if (age == 'all') {
+                            ageDataCorrect = true;
+                        } else if (age == '18' && session.min_age_limit == 18) {
+                            ageDataCorrect = true;
+                        } else if (age == '45' && session.min_age_limit == 45) {
+                            ageDataCorrect = true;
+                        } else {
+                            ageDataCorrect = false;
+                        }
+                        if (fee == 'all') {
+                            freeTypeCorrect = true;
+                        } else if (fee == 'paid' && center.fee_type == 'Paid') {
+                            freeTypeCorrect = true;
+                        } else if (fee == 'free' && center.fee_type == 'Free') {
+                            freeTypeCorrect = true;
+                        } else {
+                            freeTypeCorrect = false;
+                        }
+                        if (ageDataCorrect && freeTypeCorrect) {
+                            dataForExport.push(data);
+                        }
+                    });
                 });
-            });
-            if (dataFound && dataForExport.length > 1) {
-                document.getElementById('popupLink').click();
-                document.title = 'Vaccine Slots Found!!! Book Now!!!';
-                document.getElementById("popupData").innerHTML = "Available Slot Found, Data Downloading...";
-                exportToCsv('vaccine' + Date() + '.csv', dataForExport);
-            } else {
-                setTimeout(() => {
+                if (dataFound && dataForExport.length > 1) {
                     document.getElementById('popupLink').click();
-                }, 1000);
-                var rows = [];
-                dataForExport.forEach(dataExp => {
-                    var dataToPush = {};
-                    dataToPush.name = dataExp[0];
-                    dataToPush.fee_type = dataExp[1];
-                    dataToPush.min_age_limit = dataExp[2];
-                    dataToPush.date = dataExp[3];
-                    dataToPush.available_capacity = dataExp[4];
-                    dataToPush.vaccine = dataExp[5];
-                    dataToPush.searchAt = dataExp[6];
-                    rows.push(dataToPush);
-                });
+                    document.title = 'Vaccine Slots Found!!! Book Now!!!';
+                    document.getElementById("popupData").innerHTML = "Available Slot Found, Data Downloading...";
+                    var audio = new Audio('short_sms_echo.mp3');
+                    audio.play();
+                    exportToCsv('vaccine' + Date() + '.csv', dataForExport);
+                } else {
+                    setTimeout(() => {
+                        document.getElementById('popupLink').click();
+                    }, 1000);
+                    var rows = [];
+                    dataForExport.forEach(dataExp => {
+                        var dataToPush = {};
+                        dataToPush.name = dataExp[0];
+                        dataToPush.fee_type = dataExp[1];
+                        dataToPush.min_age_limit = dataExp[2];
+                        dataToPush.date = dataExp[3];
+                        dataToPush.available_capacity = dataExp[4];
+                        dataToPush.vaccine = dataExp[5];
+                        dataToPush.searchAt = dataExp[6];
+                        rows.push(dataToPush);
+                    });
 
-                var html = "<table border='1|1'>";
-                for (var i = 0; i < rows.length; i++) {
-                    html += "<tr>";
-                    html += "<td>" + rows[i].name + "</td>";
-                    html += "<td>" + rows[i].fee_type + "</td>";
-                    html += "<td>" + rows[i].min_age_limit + "</td>";
-                    html += "<td>" + rows[i].date + "</td>";
-                    html += "<td>" + rows[i].available_capacity + "</td>";
-                    html += "<td>" + rows[i].vaccine + "</td>";
-                    html += "<td>" + rows[i].searchAt + "</td>";
+                    var html = "<table border='1|1'>";
+                    for (var i = 0; i < rows.length; i++) {
+                        html += "<tr>";
+                        html += "<td>" + rows[i].name + "</td>";
+                        html += "<td>" + rows[i].fee_type + "</td>";
+                        html += "<td>" + rows[i].min_age_limit + "</td>";
+                        html += "<td>" + rows[i].date + "</td>";
+                        html += "<td>" + rows[i].available_capacity + "</td>";
+                        html += "<td>" + rows[i].vaccine + "</td>";
+                        html += "<td>" + rows[i].searchAt + "</td>";
 
-                    html += "</tr>";
+                        html += "</tr>";
 
+                    }
+                    html += "</table>";
+                    document.title = 'No Vaccine Slots Found';
+                    document.getElementById("popupHeaderData").innerHTML =
+                        "No Available Slots Found. Will search again in " + timer + " Seconds.";
+                    document.getElementById("popupData").innerHTML = html;
                 }
-                html += "</table>";
-                document.title = 'No Vaccine Slots Found';
-                document.getElementById("popupHeaderData").innerHTML = "No Available Slots Found. Will search again in " + timer + " Seconds.";
-                document.getElementById("popupData").innerHTML = html;
-            }
-        });
+            });
     }
 
     function exportToCsv(filename, rows) {
@@ -537,7 +633,9 @@
             csvFile += processRow(rows[i]);
         }
 
-        var blob = new Blob([csvFile], { type: 'text/csv;charset=utf-8;' });
+        var blob = new Blob([csvFile], {
+            type: 'text/csv;charset=utf-8;'
+        });
         if (navigator.msSaveBlob) { // IE 10+
             navigator.msSaveBlob(blob, filename);
         } else {

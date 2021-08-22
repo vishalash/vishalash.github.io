@@ -1,0 +1,152 @@
+{
+    "centers": [{
+        "center_id": 803927,
+        "name": "Shinde Medicare Hospital",
+        "address": "Jai Bhawani Mata Road Amboli Naka Andheri West Mumbai",
+        "state_name": "Maharashtra",
+        "district_name": "Mumbai",
+        "block_name": "Ward K West Corporation - MH",
+        "pincode": 400058,
+        "lat": 19,
+        "long": 72,
+        "from": "09:00:00",
+        "to": "17:30:00",
+        "fee_type": "Paid",
+        "sessions": [{
+            "session_id": "72905d2b-e6c3-45a8-aac4-8f2cb329a456",
+            "date": "23-08-2021",
+            "available_capacity": 173,
+            "min_age_limit": 18,
+            "max_age_limit": 44,
+            "allow_all_age": false,
+            "vaccine": "COVISHIELD",
+            "slots": ["09:00AM-11:00AM", "11:00AM-01:00PM", "01:00PM-03:00PM", "03:00PM-05:30PM"],
+            "available_capacity_dose1": 83,
+            "available_capacity_dose2": 90
+        }, {
+            "session_id": "87127194-99d4-4b5a-82c8-ad3e2d865afa",
+            "date": "23-08-2021",
+            "available_capacity": 194,
+            "min_age_limit": 45,
+            "allow_all_age": false,
+            "vaccine": "COVISHIELD",
+            "slots": ["09:00AM-11:00AM", "11:00AM-01:00PM", "01:00PM-03:00PM", "03:00PM-05:30PM"],
+            "available_capacity_dose1": 97,
+            "available_capacity_dose2": 97
+        }],
+        "vaccine_fees": [{
+            "vaccine": "COVISHIELD",
+            "fee": "780"
+        }]
+    }, {
+        "center_id": 561797,
+        "name": "Cooper Hospital 1",
+        "address": "Bhakti Vedanta Swami Marg Andheri West",
+        "state_name": "Maharashtra",
+        "district_name": "Mumbai",
+        "block_name": "Ward K West Corporation - MH",
+        "pincode": 400058,
+        "lat": 19,
+        "long": 72,
+        "from": "09:00:00",
+        "to": "17:00:00",
+        "fee_type": "Free",
+        "sessions": [{
+            "session_id": "8a93344f-a75d-4ee5-bec3-b6dd9963ecd0",
+            "date": "23-08-2021",
+            "available_capacity": 0,
+            "min_age_limit": 18,
+            "allow_all_age": true,
+            "vaccine": "COVISHIELD",
+            "slots": ["09:00AM-11:00AM", "11:00AM-01:00PM", "01:00PM-03:00PM", "03:00PM-05:00PM"],
+            "available_capacity_dose1": 0,
+            "available_capacity_dose2": 0
+        }, {
+            "session_id": "78495c88-6073-4ff1-9a88-4cfe0cb0af07",
+            "date": "23-08-2021",
+            "available_capacity": 0,
+            "min_age_limit": 18,
+            "allow_all_age": true,
+            "vaccine": "COVAXIN",
+            "slots": ["09:00AM-11:00AM", "11:00AM-01:00PM", "01:00PM-03:00PM", "03:00PM-05:00PM"],
+            "available_capacity_dose1": 0,
+            "available_capacity_dose2": 0
+        }]
+    }, {
+        "center_id": 730606,
+        "name": "Bhardawadi HP MVM Banquet Hall",
+        "address": "MVM Educational Campus Road Off Veera Desai Road Andheri (W) Mumbai Maharashtra",
+        "state_name": "Maharashtra",
+        "district_name": "Mumbai",
+        "block_name": "Ward K West Corporation - MH",
+        "pincode": 400058,
+        "lat": 19,
+        "long": 72,
+        "from": "09:00:00",
+        "to": "17:00:00",
+        "fee_type": "Free",
+        "sessions": [{
+            "session_id": "81b400cc-49ed-467c-971b-7cdcb21138ae",
+            "date": "23-08-2021",
+            "available_capacity": 6,
+            "min_age_limit": 18,
+            "allow_all_age": true,
+            "vaccine": "COVISHIELD",
+            "slots": ["09:00AM-11:00AM", "11:00AM-01:00PM", "01:00PM-03:00PM", "03:00PM-05:00PM"],
+            "available_capacity_dose1": 0,
+            "available_capacity_dose2": 6
+        }]
+    }, {
+        "center_id": 662213,
+        "name": "BSES MG HOSPITAL ANDHERI WEST",
+        "address": "SV Road Near Andheri Railway Station Andheri West",
+        "state_name": "Maharashtra",
+        "district_name": "Mumbai",
+        "block_name": "Ward K West Corporation - MH",
+        "pincode": 400058,
+        "lat": 0,
+        "long": 0,
+        "from": "10:00:00",
+        "to": "13:00:00",
+        "fee_type": "Paid",
+        "sessions": [{
+            "session_id": "8edc2067-ef45-46a8-aebb-0b2dbe6ad0d8",
+            "date": "23-08-2021",
+            "available_capacity": 190,
+            "min_age_limit": 18,
+            "allow_all_age": true,
+            "vaccine": "COVISHIELD",
+            "slots": ["10:00AM-12:00PM", "12:00PM-01:00PM"],
+            "available_capacity_dose1": 142,
+            "available_capacity_dose2": 48
+        }],
+        "vaccine_fees": [{
+            "vaccine": "COVISHIELD",
+            "fee": "780"
+        }]
+    }, {
+        "center_id": 722874,
+        "name": "Andheri Recreation Club P 65",
+        "address": "Dadabhai Road Andheri (W) Opposite Bhavans College Mumbai Maharashtra",
+        "state_name": "Maharashtra",
+        "district_name": "Mumbai",
+        "block_name": "Ward K West Corporation - MH",
+        "pincode": 400058,
+        "lat": 19,
+        "long": 72,
+        "from": "09:00:00",
+        "to": "17:00:00",
+        "fee_type": "Free",
+        "sessions": [{
+            "session_id": "a9609583-63b5-4abe-a83e-82122b7847f1",
+            "date": "23-08-2021",
+            "available_capacity": 0,
+            "min_age_limit": 18,
+            "allow_all_age": true,
+            "vaccine": "COVISHIELD",
+            "slots": ["09:00AM-11:00AM", "11:00AM-01:00PM", "01:00PM-03:00PM", "03:00PM-05:00PM"],
+            "available_capacity_dose1": 0,
+            "available_capacity_dose2": 0
+        }]
+    }]
+}
