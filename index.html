@@ -568,9 +568,9 @@
 
                         if (vaccineType == 'all') {
                             vaccineTypeCorrect = true;
-                        } else if (vaccineType == 'COVISHIELD' && center.vaccineType_type == 'COVISHIELD') {
+                        } else if (vaccineType == 'COVISHIELD' && session.vaccine == 'COVISHIELD') {
                             vaccineTypeCorrect = true;
-                        } else if (vaccineType == 'COVAXIN' && center.vaccineType_type == 'COVAXIN') {
+                        } else if (vaccineType == 'COVAXIN' && session.vaccine == 'COVAXIN') {
                             vaccineTypeCorrect = true;
                         } else {
                             vaccineTypeCorrect = false;
