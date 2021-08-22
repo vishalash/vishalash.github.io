@@ -444,6 +444,14 @@
                     <input type="radio" id="all" name="fee" value="all" checked>
                     <label style="display: inline;" for="all">All</label>
 
+                    <legend><span class="number">4</span> Vaccine Type </legend>
+                    <input type="radio" id="COVISHIELD" name="vaccineType" value="COVISHIELD">
+                    <label style="display: inline;" for="COVISHIELD">COVISHIELD</label>
+                    <input type="radio" id="COVAXIN" name="vaccineType" value="COVAXIN">
+                    <label style="display: inline;" for="COVAXIN">COVAXIN</label>
+                    <input type="radio" id="all" name="vaccineType" value="all" checked>
+                    <label style="display: inline;" for="all">All</label>
+
                 </fieldset>
                 &#9432; We will download csv data if any slot is available, otherwise popup will show the data.
                 <br />
@@ -512,6 +520,7 @@
         var timer = e.value;
         var age = document.querySelector('input[name="age"]:checked').value;
         var fee = document.querySelector('input[name="fee"]:checked').value;
+        var vaccineType = document.querySelector('input[name="vaccineType"]:checked').value;
         document.title = 'Searching for Vaccine data';
         client.get('https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByPin?pincode=' + pincode +
             '&date=' + today,
@@ -528,7 +537,8 @@
                 response.centers.forEach(center => {
                     center.sessions.forEach(session => {
                         var ageDataCorrect = true;
-                        var freeTypeCorrect = true;
+                        var feeTypeCorrect = true;
+                        var vaccineTypeCorrect = true;
                         var data = [];
                         data.push(center.name);
                         data.push(center.fee_type);
@@ -547,15 +557,25 @@
                             ageDataCorrect = false;
                         }
                         if (fee == 'all') {
-                            freeTypeCorrect = true;
+                            feeTypeCorrect = true;
                         } else if (fee == 'paid' && center.fee_type == 'Paid') {
-                            freeTypeCorrect = true;
+                            feeTypeCorrect = true;
                         } else if (fee == 'free' && center.fee_type == 'Free') {
-                            freeTypeCorrect = true;
+                            feeTypeCorrect = true;
                         } else {
-                            freeTypeCorrect = false;
+                            feeTypeCorrect = false;
                         }
-                        if (ageDataCorrect && freeTypeCorrect) {
+
+                        if (vaccineType == 'all') {
+                            vaccineTypeCorrect = true;
+                        } else if (vaccineType == 'COVISHIELD' && center.vaccineType_type == 'COVISHIELD') {
+                            vaccineTypeCorrect = true;
+                        } else if (vaccineType == 'COVAXIN' && center.vaccineType_type == 'COVAXIN') {
+                            vaccineTypeCorrect = true;
+                        } else {
+                            vaccineTypeCorrect = false;
+                        }
+                        if (ageDataCorrect && feeTypeCorrect && vaccineTypeCorrect) {
                             if (session.available_capacity > 0) {
                                 dataFound = true;
                             }
